@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>@import url(index.css);</style>
+</head>
+<body> 
+    <div id="contend" class="content">
+        <div class="imageCNV">
+            <canvas id="cnv" width="500" height="500"></canvas>
+            <div class="btnTopBot">
+                <button onclick="moveTop()" id="top">🠕</button>
+                <button onclick="moveBottom()" id="bottom">🠗</button>
+            </div>
+        </div>
+        <div class="btnPanel">
+            <button onclick="moveLeft()" id="left">🠔</button>
+            <button onclick="approximation()" id="appr">+</button>
+            <button onclick="document.getElementById('file-input').click();" id="open">Open</button> 
+            <input id="file-input" type="file" style="display: none;" accept=".png,.jpg,.jpeg"/>    
+            <button onclick="distancing()" id="dist">−</button>
+            <button onclick="moveRight()" id="right">🠖</button>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

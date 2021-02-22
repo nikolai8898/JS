@@ -1,0 +1,116 @@
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    margin: 0;
+    padding: 0;
+}
+.html, body {
+    background-color: black;
+}
+.imageCNV{
+    display: flex;
+}
+.btnTopBot{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+.btnPanel{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 15px;
+}
+.content{
+    margin-top: 2%;
+    margin-left: calc(50% - 260px);
+    width: 520px;
+    height: 520px;
+    position: absolute;
+    background-color: darkblue;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #666;
+}
+#cnv{
+    margin: 10px;
+}
+#left{
+    display: none;
+    Color: white;
+    background-color: darkblue;
+    box-sizing: border-box;
+    width: 30px;
+    margin-left: 20px;
+    border: blueviolet;
+    border-radius: 2px;
+    box-shadow: 0 0 5px #666;
+}
+#appr{
+    display: none;
+    Color: white;
+    background-color: darkblue;
+    box-sizing: border-box;
+    width: 100px;
+    margin-left: 40px;
+    border: blueviolet;
+    border-radius: 2px;
+    box-shadow: 0 0 5px #666;
+}
+#open{
+    display: inline-block;
+    Color: white;
+    background-color: darkblue;
+    box-sizing: border-box;
+    width: 100px;
+    margin-left: calc(50% - 50px);
+    border: blueviolet;
+    border-radius: 2px;
+    box-shadow: 0 0 5px #666;
+}
+#dist{
+    display: none;
+    Color: white;
+    background-color: darkblue;
+    box-sizing: border-box;
+    width: 100px;
+    margin-left: 140px;
+    border: blueviolet;
+    border-radius: 2px;
+    box-shadow: 0 0 5px #666;
+}
+#right{
+    display: none;
+    Color: white;
+    background-color: darkblue;
+    box-sizing: border-box;
+    width: 30px;
+    border: blueviolet;
+    border-radius: 2px;
+    margin-left: 40px;
+    box-shadow: 0 0 5px #666;
+}
+#bottom{
+    display: none;
+    Color: white;
+    background-color: darkblue;
+    box-sizing: border-box;
+    height: 45px;
+    width: 15px;
+    margin-top: 400px;
+    border: blueviolet;
+    border-radius: 2px;
+    box-shadow: 0 0 5px #666;
+}
+#top{
+    display: none;
+    Color: white;
+    background-color: darkblue;
+    box-sizing: border-box;
+    height: 45px;
+    width: 15px;
+    margin-top: 10px;
+    border: blueviolet;
+    border-radius: 2px;
+    box-shadow: 0 0 5px #666;
+}
