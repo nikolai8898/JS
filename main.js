@@ -209,15 +209,6 @@ function paintedBlock(element) {
         sessionStorage.setItem(currentWIN[currentIndex].xy, currentWIN[currentIndex].rgba)
     }
 }
-function resizePlus() {
-    win.forEach((coord) =>{
-        cntxCanvas.fillStyle = coord.rgba
-        cntxCanvas.fillRect(coord.x, coord.y, SQR, SQR)
-        const index2 = currentWIN.findIndex(element => element.xy === coord.xy)
-        currentWIN[index2].rgba = coord.rgba 
-        if (win.length === 0) {alert('ну так неинтересно, ты просто читер')}
-    })
-}
 function approximation() {
     cntxCanvas.clearRect(currentX, currentY, currentWidth, currentWidth)
     diffScale *= 2
