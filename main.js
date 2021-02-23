@@ -49,6 +49,7 @@ function itsNull() {
     cntxCanvas.clearRect(0,0, 500, 500)
 }
 function game() {
+    SQR = prompt('Сторона квадрата для "разбития" картинки', 20)
     if (this.width >= this.height) {
         let currentSize = (this.width / this.height) * 500
         cntxCanvas.drawImage(img, 0, 0, 500, currentSize)
@@ -86,6 +87,8 @@ function game() {
     getGray()
     paintRect()
 }
+
+
 function CIE76() {
     for (let index = 0; index < win.length; index++) {
         const element = win[index];
@@ -101,6 +104,8 @@ function CIE76() {
         }	
     }
 }
+
+
 function colorsPack() {
     colorsBack.forEach((coord) => {
 		const element = document.createElement('div')
@@ -124,12 +129,16 @@ function colorsPack() {
 		window.contend.appendChild(element)	
 	})
 }
+
+
 function paintPicture() {
     win.forEach( coord => {
         cntxCanvas.fillStyle = `${coord.rgba}`
         cntxCanvas.fillRect(+coord.x + currentX, +coord.y + currentY, SQR, SQR)
     })
 }
+
+
 function paintRect() {
     win.forEach(coord => {
         cntxCanvas.strokeStyle = '#fff'
@@ -140,6 +149,8 @@ function paintRect() {
         cntxCanvas.fillText(`${coord.numb}`, +coord.x + SQR * 0.4 + currentX, +coord.y + SQR * 0.75 + currentY)
     })
 }
+
+
 function colorPicked(element) {
     const result = win.filter(coord => coord.rgba === element.originalTarget.id)
     win.forEach(coord => {
@@ -155,12 +166,18 @@ function colorPicked(element) {
     cnv.onmousedown = startPainted
     cnv.onmouseup = endPainted
 }
+
+
 function startPainted() {
     cnv.addEventListener('mousemove', paintedBlock)
 }
+
+
 function endPainted() {
     cnv.removeEventListener('mousemove', paintedBlock)
 }
+
+
 function getGray() {
     let Sample = cntxCanvas.getImageData(0, 0, currentWidth, currentWidth)
     data = Sample.data
@@ -178,10 +195,36 @@ function getGray() {
         }
     })
 }
+
+
 function unlockBtn(btnID) {
     const btn = document.getElementById(`${btnID}`)
     btn.style.display = 'none'
 }
+
+
+function checkWin() {
+    if (win.length === 0) {
+        alert('ты выиграл что-то ценное')
+        unlockBtn('left')
+        unlockBtn('right')
+        unlockBtn('top')
+        unlockBtn('bottom')
+        unlockBtn('dist')
+        unlockBtn('appr')
+        btnLock('open')
+    }
+}
+
+
+function checkColors(currentIndex) {
+    const indexNumb = win.filter(coord => coord.rgba === currentWIN[currentIndex].rgba)
+        if (indexNumb.length === 0) {
+            const element = document.getElementById(currentWIN[currentIndex].rgba)
+            element.style.display = 'none'
+        }
+}
+
 function paintedBlock(element) {
     let x = Math.round(element.layerX / (diffScale *SQR)) * SQR - SQR
     y = Math.round(element.layerY / (diffScale *SQR)) * SQR - SQR
@@ -202,24 +245,13 @@ function paintedBlock(element) {
             cntxCanvas.font = `normal ${SQR/2}px Arial`
             cntxCanvas.fillText(`${win[indexWIN].numb}`, +win[indexWIN].x + SQR * 0.4 + currentX,  +win[indexWIN].y + SQR * 0.75 + currentY)
         }
-        const indexNumb = win.filter(coord => coord.rgba === currentWIN[currentIndex].rgba)
-        if (indexNumb.length === 0) {
-            const element = document.getElementById(currentWIN[currentIndex].rgba)
-            element.style.display = 'none'
-        }
-        if (win.length === 0) {
-            alert('ты выиграл что-то ценное')
-            unlockBtn('left')
-            unlockBtn('right')
-            unlockBtn('top')
-            unlockBtn('bottom')
-            unlockBtn('dist')
-            unlockBtn('appr')
-            btnLock('open')
-        }
+        checkColors(currentIndex)
+        checkWin()
         sessionStorage.setItem(currentWIN[currentIndex].xy, currentWIN[currentIndex].rgba)
     }
 }
+
+
 function approximation() {
     cntxCanvas.clearRect(0, 0, currentWidth, currentWidth)
     diffScale *= 2
@@ -231,10 +263,14 @@ function approximation() {
     getGray()
     paintRect()
 }
+
+
 function btnLock(btnID) {
     const btn = document.getElementById(`${btnID}`)
     btn.style.display = 'inline-block'
 }
+
+
 function distancing() {
     cntxCanvas.clearRect(0, 0, currentWidth, currentWidth)
     if (diffScale <= 1) {} else {
@@ -246,6 +282,8 @@ function distancing() {
     getGray()
     paintRect()
 }
+
+
 function moveLeft() {
     cntxCanvas.clearRect(0, 0, currentWidth, currentWidth)
     currentX = currentX - 2*SQR
@@ -255,6 +293,8 @@ function moveLeft() {
     getGray()
     paintRect()
 }
+
+
 function moveRight() {
     cntxCanvas.clearRect(0, 0, currentWidth, currentWidth)
     currentX = currentX + 2*SQR
@@ -264,6 +304,8 @@ function moveRight() {
     getGray()
     paintRect()
 }
+
+
 function moveTop() {
     cntxCanvas.clearRect(0, 0, currentWidth, currentWidth)
     currentY = currentY - 2*SQR
@@ -273,6 +315,8 @@ function moveTop() {
     getGray()
     paintRect()
 }
+
+
 function moveBottom() {
     cntxCanvas.clearRect(0, 0, currentWidth, currentWidth)
     currentY = currentY + 2*SQR
