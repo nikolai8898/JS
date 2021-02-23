@@ -237,8 +237,10 @@ function btnLock(btnID) {
 }
 function distancing() {
     cntxCanvas.clearRect(0, 0, currentWidth, currentWidth)
-    diffScale *= 0.5
-    cntxCanvas.scale(0.5, 0.5)
+    if (diffScale <= 1) {} else {
+        diffScale *= 0.5
+        cntxCanvas.scale(0.5, 0.5)
+    }
     cntxCanvas.drawImage(img, currentX, currentY, 500, 500)
     paintPicture()
     getGray()
