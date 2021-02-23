@@ -28,8 +28,7 @@ input.onchange = function chooseFile() {
     btnLock('bottom')
     btnLock('dist')
     btnLock('appr')
-    const btn = document.getElementById('open')
-    btn.style.display = 'none'
+    unlockBtn('open')
     let inputValue = input.value
     let arrValue = inputValue.split('\\')
     img.src = `${arrValue[2]}`
@@ -117,7 +116,7 @@ function colorsPack() {
 		element.style.boxSizing = 'border-box'
 		element.innerHTML = `${coord.numb}`
 		element.style.fontSize = '50%'
-        element.style.textShadow = '2px 2px 0 #ccc'
+        element.style.textShadow = '1px 0px 0 #fff'
 		element.style.textAlign = 'center'
         element.style.cursor = 'pointer'
         element.style.boxShadow = '0 0 5px #666'
@@ -179,10 +178,13 @@ function getGray() {
         }
     })
 }
+function unlockBtn(btnID) {
+    const btn = document.getElementById(`${btnID}`)
+    btn.style.display = 'none'
+}
 function paintedBlock(element) {
     let x = Math.round(element.layerX / (diffScale *SQR)) * SQR - SQR
     y = Math.round(element.layerY / (diffScale *SQR)) * SQR - SQR
-    console.log(x, y, x - currentX, y - currentY);
     indexWIN = win.findIndex(coord => coord.xy === `${x - currentX}:${y - currentY}`)
     index = win.findIndex(coord => coord.xy === `${x}:${y}`)
     if (index !== -1 && indexWIN !== -1) {
@@ -205,12 +207,21 @@ function paintedBlock(element) {
             const element = document.getElementById(currentWIN[currentIndex].rgba)
             element.style.display = 'none'
         }
-        if (win.length === 0) {alert('ты выиграл что-то ценное')}
+        if (win.length === 0) {
+            alert('ты выиграл что-то ценное')
+            unlockBtn('left')
+            unlockBtn('right')
+            unlockBtn('top')
+            unlockBtn('bottom')
+            unlockBtn('dist')
+            unlockBtn('appr')
+            btnLock('open')
+        }
         sessionStorage.setItem(currentWIN[currentIndex].xy, currentWIN[currentIndex].rgba)
     }
 }
 function approximation() {
-    cntxCanvas.clearRect(currentX, currentY, currentWidth, currentWidth)
+    cntxCanvas.clearRect(0, 0, currentWidth, currentWidth)
     diffScale *= 2
     if (diffScale > 2) {
         diffScale = 2
@@ -225,7 +236,7 @@ function btnLock(btnID) {
     btn.style.display = 'inline-block'
 }
 function distancing() {
-    cntxCanvas.clearRect(currentX, currentY, currentWidth, currentWidth)
+    cntxCanvas.clearRect(0, 0, currentWidth, currentWidth)
     diffScale *= 0.5
     cntxCanvas.scale(0.5, 0.5)
     cntxCanvas.drawImage(img, currentX, currentY, 500, 500)
@@ -233,8 +244,8 @@ function distancing() {
     getGray()
     paintRect()
 }
-function moveRight() {
-    cntxCanvas.clearRect(currentX, currentY, currentWidth, currentWidth)
+function moveLeft() {
+    cntxCanvas.clearRect(0, 0, currentWidth, currentWidth)
     currentX = currentX - 2*SQR
     currentX < -(currentWidth * 10 / SQR) ? currentX = -(currentWidth * 10 / SQR) : {}
     cntxCanvas.drawImage(img, currentX, currentY, currentWidth, currentWidth)
@@ -242,8 +253,8 @@ function moveRight() {
     getGray()
     paintRect()
 }
-function moveLeft() {
-    cntxCanvas.clearRect(currentX, currentY, currentWidth, currentWidth)
+function moveRight() {
+    cntxCanvas.clearRect(0, 0, currentWidth, currentWidth)
     currentX = currentX + 2*SQR
     currentX > 0 ? currentX = 0 : {}
     cntxCanvas.drawImage(img, currentX, currentY, currentWidth, currentWidth)
@@ -251,8 +262,8 @@ function moveLeft() {
     getGray()
     paintRect()
 }
-function moveBottom() {
-    cntxCanvas.clearRect(currentX, currentY, currentWidth, currentWidth)
+function moveTop() {
+    cntxCanvas.clearRect(0, 0, currentWidth, currentWidth)
     currentY = currentY - 2*SQR
     currentY < -(currentWidth * 10 / SQR) ? currentY = -(currentWidth * 10 / SQR) : {}
     cntxCanvas.drawImage(img, currentX, currentY, currentWidth, currentWidth)
@@ -260,8 +271,8 @@ function moveBottom() {
     getGray()
     paintRect()
 }
-function moveTop() {
-    cntxCanvas.clearRect(currentX, currentY, currentWidth, currentWidth)
+function moveBottom() {
+    cntxCanvas.clearRect(0, 0, currentWidth, currentWidth)
     currentY = currentY + 2*SQR
     currentY > 0 ? currentY = 0 : {}
     cntxCanvas.drawImage(img, currentX, currentY, currentWidth, currentWidth)
