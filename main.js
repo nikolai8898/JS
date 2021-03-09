@@ -1,20 +1,20 @@
 let SQR = 20
 let x = 30
-    numb = 1
-    win = []
-	currentWIN = []
-	XY = []
-    diffScale = 1
-	colorsBackCur = []
-    colorsBack = []
-	currentColor = ''
-	cur = []
-    currentWidth = 500
-    currentY = 0
-    currentX = 0
+let numb = 1
+let win = []
+let currentWIN = []
+let XY = []
+let diffScale = 1
+let colorsBackCur = []
+let colorsBack = []
+let currentColor = ''
+let cur = []
+let currentWidth = 500
+let currentY = 0
+let currentX = 0
 	
     const oCanvas = document.getElementById('cnv')
-    cntxCanvas = oCanvas.getContext('2d')
+    const cntxCanvas = oCanvas.getContext('2d')
     let img = new Image()
     const input = document.getElementById('file-input')
     
